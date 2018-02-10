@@ -39,7 +39,7 @@ buildCommonArgs <- function(lang=NULL, since=NULL, until=NULL, locale=NULL,
                             result_type=NULL, lat=NULL, long=NULL, place_id=NULL,
                             display_coordinates=NULL,
                             in_reply_to_status_id=NULL, exclude=NULL,
-                            date=NULL) {
+                            date=NULL, tweet_mode=NULL) {
   out <- list()
   for (arg in names(formals())) {
     val <- get(arg)

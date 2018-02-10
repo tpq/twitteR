@@ -135,6 +135,13 @@ doPagedAPICall = function(cmd, num, params=NULL, method='GET', ...) {
   jLen <- length(jsonList)
   if ((jLen > 0) && (jLen > num))
     jsonList <- jsonList[1:num]
+  
+  if(params$tweet_mode == "extended"){
+    for(i in 1:length(jsonList)){
+      names(jsonList[[i]])[4] <- "text"
+    }
+  }
+  
   jsonList
 }
 
@@ -205,6 +212,12 @@ doRppAPICall = function(cmd, num, params, ...) {
 
   if (length(jsonList) < num) {
     warning(num, " tweets were requested but the API can only return ", length(jsonList))
+  }
+  
+  if(params$tweet_mode == "extended"){
+    for(i in 1:length(jsonList)){
+      names(jsonList[[i]])[4] <- "text"
+    }
   }
 
   return(jsonList)

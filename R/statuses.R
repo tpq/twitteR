@@ -268,10 +268,10 @@ favorites = function(user, n=20, max_id=NULL, since_id=NULL, ...) {
   return(statusBase(cmd, params, n, 200, ...))
 }
 
-userTimeline = function(user, n=20, maxID=NULL, sinceID=NULL, includeRts=FALSE, excludeReplies=FALSE, ...) {
+userTimeline = function(user, n=20, maxID=NULL, sinceID=NULL, includeRts=FALSE, excludeReplies=FALSE, tweet_mode="extended", ...) {
   uParams <- parseUsers(user)
   cmd <- 'statuses/user_timeline'
-  params <- buildCommonArgs(max_id=maxID, since_id=sinceID)
+  params <- buildCommonArgs(max_id=maxID, since_id=sinceID, tweet_mode=tweet_mode)
   params[['user_id']] <- uParams[['user_id']]
   params[['screen_name']] <- uParams[['screen_name']]
   params[["include_rts"]] <- ifelse(includeRts == TRUE, "true", "false")
